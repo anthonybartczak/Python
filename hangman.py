@@ -1,4 +1,5 @@
 import random as r
+import string as s
 
 words_tpl = (
     #'car',
@@ -26,11 +27,8 @@ def show_blanks(word):
 
 def exchange_char(char_index, guess_list, guessed_char):
 
-    guess_list = [guessed_char if x == char_index else x for x in guess_list]
-
-    #for index in char_index:
-        #print(index)
-        #guess_list[index] = guessed_char
+    for index in char_index:
+        guess_list[index] = guessed_char
 
     return guess_list
 
@@ -51,11 +49,15 @@ def get_char_pos(word, guessed_char):
 guess_list = show_blanks(word)
 
 print('Wyświetlam rozmiar słowa:', guess_list)
-char = input('Podaj literę: ')
 
-if char in word:
-    char_index = get_char_pos(word, char)
-    updated_char = exchange_char(char_index, guess_list, char)
-    print(updated_char)
-else:
-    print('Zła litera!')
+while '_' in guess_list:
+
+    char = input('\nPodaj literę: ')
+
+    if char in word:
+        char_index = get_char_pos(word, char)
+        updated_char = exchange_char(char_index, guess_list, char)
+        for x in updated_char:
+            print(x, end='')
+    else:
+        print('Zła litera!')
