@@ -21,5 +21,14 @@ def create_strong(length):
 
     return password
 
-lol = create_strong(20)
+def create_weak(word, length):
+
+    while len(word) < length:
+        add = r.randrange(0, 9)
+        word = word + str(add)
+
+    return word
+
+
+lol = create_weak('pies', 10)
 print(lol)
