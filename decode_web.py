@@ -3,7 +3,9 @@ import requests
 
 url = 'https://www.nytimes.com/'
 r = requests.get(url)
-r_html = r.text
+soup = BeautifulSoup(r.text, features="html.parser")
+print(soup)
 
-r_parsed = BeautifulSoup(r_html)
-r_title = str(r_parsed.find('span', 'articletitle'))
+
+for story_heading in soup.find_all(class_="balancedHeadline"):
+    print(story_heading)
